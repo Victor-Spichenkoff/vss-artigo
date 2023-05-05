@@ -8,6 +8,7 @@ app.db = db
 
 const consign = require('consign')
 consign()
+    .include('./config/passport.js')
     .then('./config/middlewares.js')//recebe app(parametro, a intancia)
     .then('./api/validation.js')//colocar ele para evitar o erro de não carregar
     .then('./api')

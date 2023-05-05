@@ -1,3 +1,6 @@
+const admin = require('./admin')
+
+
 module.exports = app => {
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
@@ -5,39 +8,73 @@ module.exports = app => {
 
 
     app.route('/users/:id')
-        .put(app.api.user.save)
-        .get(app.api.user.getByID)
+        .put(admin(app.api.user.save))
+        .get(admin(app.api.user.getByID))
         
 
 
     app.route('/users')
-        .post(app.api.user.save)
-        .get(app.api.user.get)
+        .all(app.config.passport.authenticate())
+        .post(admin(app.api.user.save))
+        .get(admin(app.api.user.get))
 
 
     app.route('/categories')
-        .get(app.api.category.get)
-        .post(app.api.category.save)
+        .all(app.config.passport.authenticate())
+        .get(admin(app.api.category.get))
+        .post(admin(app.api.category.save))
     
 
     app.route('/categories/tree')
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getTree)
 
     app.route('/categories/:id')
+        .all(app.config.passport.authenticate())
         .get(app.api.category.getByID)
-        .put(app.api.category.save)
-        .delete(app.api.category.remove)
+        .put(admin(app.api.category.save))
+        .delete(admin(app.api.category.remove))
 
     app.route('/articles')
-        .get(app.api.article.get)
-        .post(app.api.article.save)
+        .all(app.config.passport.authenticate())
+        .get(admin(app.api.article.get))
+        .post(admin(app.api.article.save))
 
 
     app.route('/articles/:id')
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getByID)
-        .delete(app.api.article.remove)
-        .put(app.api.article.save)
+        .delete(admin(app.api.article.remove))
+        .put(admin(app.api.article.save))
 
     app.route('/categories/:id/articles')
+        .all(app.config.passport.authenticate())
         .get(app.api.article.getByCategory)
+
 }
+
+
+//testar login adm
+// {
+//     "email": "vss@gmail.com",
+//     "password": 12345
+// }
+
+// bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlZpY3RvciBTcGljaGVua29mZiBTYW50YW5hIiwiZW1haWwiOiJ2c3NAZ21haWwuY29tIiwiYWRtaW4iOnRydWUsImlhdCI6MTY4MzIzNjk4NiwiZXhwIjoxNjgzNDk2MTg2fQ.OE6r5g4qH_1V3G-OE6DC0vK7UBxfZuiFShJhlF3mAr0
+
+
+// {
+//     "id": 2,
+//     "name": "Victor",
+//     "email": "v@gmail.com",
+//     "admin": false
+// } 
+// {
+//     "id": 2,
+//     "name": "Victor",
+//     "email": "v@gmail.com",
+//     "admin": false,
+//     "iat": 1683244641,
+//     "exp": 1685836641,
+//     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwibmFtZSI6IlZpY3RvciIsImVtYWlsIjoidkBnbWFpbC5jb20iLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY4MzI0NDY0MSwiZXhwIjoxNjg1ODM2NjQxfQ.TaYld2xbYlRXpFeGJNXAmONSDf0sOfNPiM423XJ7i54"
+// }

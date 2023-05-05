@@ -4,19 +4,30 @@ const bcrypt = require('bcrypt-nodejs')
 
 module.exports = app => {
     const signin = async (req, res) => {
-        if(!req.body.email || req.body.passord) {
+        if(!req.body.email || !req.body.password) {
             return res.status(400).send('Informe usuário e senha')
         } 
+
 
         //pega o usuario
         const user = await app.db('users')
             .where({ email: req.body.email })
             .first()
+            .then(u => u)
+            .catch(e => res.send(e))
+            
+            
+            
+            if(!user) return res.status(400).send('Usuário não encontrado')
+            
+            //verificar a senha
+        // try {
+            const isMatch = bcrypt.compareSync(req.body.password.toString(), user.password)
 
-        if(!user) return res.status(400).send('Usuário não informado')
+            
+        // }catch(e){console.log("ERROOOOOOOOO: " +e)}
 
-        //verificar a senha
-        const isMatch = bcrypt.compareSync(req.body.password, user.password)
+
 
         if(!isMatch) return res.status(401).send('Usuário ou senha incorretos')
 
@@ -29,13 +40,14 @@ module.exports = app => {
             email: user.email,
             admin: user.admin,
             iat: now,
-            exp: now + (60 * 60 * 24 * 3)//3 dias
+            exp: now + (60 * 60 * 24 * 30)//3 dias(30 dias para teste)
         }
 
         res.json({
             ...payload,
             token: jwt.encode(payload, authSecret)
         })
+
     }
 
 
@@ -50,11 +62,14 @@ module.exports = app => {
                 }
             }
         } catch(e) {
+            res.status(400)
             //não precisa responder
         }
 
         res.send(false)
     }
+
+
 
 
     return { signin, validateToken }
