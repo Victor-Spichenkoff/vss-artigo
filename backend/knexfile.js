@@ -3,9 +3,13 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+
+const { db } = require('./.env')
+
 module.exports = {
     client: 'postgresql',
-    connection: {
+    connection: /*db*/{
       database: 'postgres',
       user:     'postgres',
       password: 'pituca'

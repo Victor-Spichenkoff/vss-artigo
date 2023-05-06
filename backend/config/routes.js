@@ -17,6 +17,7 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .post(admin(app.api.user.save))
         .get(admin(app.api.user.get))
+        .delete(admin(app.api.user.remove))
 
 
     app.route('/categories')
@@ -51,6 +52,10 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .get(app.api.article.getByCategory)
 
+
+    app.route('/stats')
+        .all(app.config.passport.authenticate())
+        .get(app.api.stat.get)
 }
 
 

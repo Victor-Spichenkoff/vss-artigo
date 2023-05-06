@@ -25,7 +25,7 @@ module.exports = app => {
             const isMatch = bcrypt.compareSync(req.body.password.toString(), user.password)
 
             
-        // }catch(e){console.log("ERROOOOOOOOO: " +e)}
+        // }catch(e){console.log("ERRO: " +e)}
 
 
 
