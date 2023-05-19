@@ -3,7 +3,11 @@
         <a href="#" class="toggle" v-if='!hideToggle' @click="toggleMenu">
             <i class="fa fa-lg" :class="icon"></i><!--icon=retorna se é aberto ou fechado-->
         </a>
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">
+            <router-link to="/">
+                {{ title }}
+            </router-link>
+        </h1>
         <UserDropdown v-if="!hiddeUserDropdown" />
     </header>
 </template>

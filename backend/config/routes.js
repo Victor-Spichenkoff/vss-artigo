@@ -7,17 +7,19 @@ module.exports = app => {
     app.post('/validateToken', app.api.auth.validateToken)
 
 
-    app.route('/users/:id')
-        .put(admin(app.api.user.save))
-        .get(admin(app.api.user.getByID))
-        
-
-
     app.route('/users')
         .all(app.config.passport.authenticate())
         .post(admin(app.api.user.save))
         .get(admin(app.api.user.get))
         .delete(admin(app.api.user.remove))
+
+        
+    app.route('/users/:id')
+        .put(admin(app.api.user.save))
+        .get(admin(app.api.user.getByID))
+
+
+
 
 
     app.route('/categories')
@@ -36,17 +38,19 @@ module.exports = app => {
         .put(admin(app.api.category.save))
         .delete(admin(app.api.category.remove))
 
-    app.route('/articles')
+        app.route('/articles/:id')
+            .all(app.config.passport.authenticate())
+            .get(app.api.article.getByID)
+            .delete(admin(app.api.article.remove))
+            .put(admin(app.api.article.save))
+ 
+ 
+            app.route('/articles')
         .all(app.config.passport.authenticate())
         .get(admin(app.api.article.get))
         .post(admin(app.api.article.save))
 
 
-    app.route('/articles/:id')
-        .all(app.config.passport.authenticate())
-        .get(app.api.article.getByID)
-        .delete(admin(app.api.article.remove))
-        .put(admin(app.api.article.save))
 
     app.route('/categories/:id/articles')
         .all(app.config.passport.authenticate())
@@ -54,7 +58,7 @@ module.exports = app => {
 
 
     app.route('/stats')
-        .all(app.config.passport.authenticate())
+        // .all(app.config.passport.authenticate())
         .get(app.api.stat.get)
 }
 
@@ -83,3 +87,5 @@ module.exports = app => {
 //     "exp": 1685836641,
 //     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwibmFtZSI6IlZpY3RvciIsImVtYWlsIjoidkBnbWFpbC5jb20iLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY4MzI0NDY0MSwiZXhwIjoxNjg1ODM2NjQxfQ.TaYld2xbYlRXpFeGJNXAmONSDf0sOfNPiM423XJ7i54"
 // }
+
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlZpY3RvciBTcGljaGVua29mZiBTYW50YW5hIiwiZW1haWwiOiJ2c3NAZ21haWwuY29tIiwiYWRtaW4iOnRydWUsImlhdCI6MTY4NDI3MDQ3NSwiZXhwIjoxNjg2ODYyNDc1fQ._IYNUPkX0MBmU4Ecuk2uFz91Noxz1SwyLRIdTfSNS14

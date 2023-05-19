@@ -2,7 +2,11 @@ module.exports = app => {
     const { existsOrError, notExistsOrError, equalsOrError, validID } = app.api.validation
 
     const save = (req, res) => {//salva e atualiza as categorias
-        const category = {...req.body}
+        const category =  {
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId
+        }//evitar se receber mais que o necessario {...req.body}<--sem filtro
         if(req.params.id) category.id = req.params.id
         try {
             existsOrError(category.name, 'Nome não informado')

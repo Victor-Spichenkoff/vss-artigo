@@ -50,7 +50,7 @@ module.exports = app => {
 
     //paginacao
 
-    const limit = 10
+    const limit = 2
 
     const get = async (req, res) => {
         const page = req.query.page || 1
@@ -70,14 +70,15 @@ module.exports = app => {
 
     const getByID = (req, res) => {
         app.db('articles')
-            .where({ id:req.params.id })
+            .where({ id: req.params.id })
             .first()
             .then(article => {
                 article.content = article.content.toString()
                 return res.json(article)
             })
-            .catch(e => res.status(500).send(e))
+            .catch(err => res.status(503).send(err))
     }
+
 
 
     const getByCategory = async (req, res) => {

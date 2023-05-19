@@ -60,7 +60,7 @@ export default {
         loadCategories() {
             const url = `${baseApiUrl}/categories`
             axios.get(url).then(res => {
-                // this.categories = res.data (visualizar melhor)
+                // this.categories = res.data
                 this.categories = res.data.map(category => {
                     return { ...category, value: category.id, text: category.path }
                 })
@@ -85,7 +85,7 @@ export default {
             const id = this.category.id
             axios.delete(`${baseApiUrl}/categories/${id}`)
                 .then(() => {
-                    // this.$toasted.global.defaultSuccess()
+                    this.$toasted.global.defaultSuccess()
                     this.reset()
                 })
                 .catch(showError)
