@@ -47,7 +47,7 @@ export default {
             })
         }
     },
-    watch: {
+    watch: {//ao trocar a categoria, precisa mudar tudo (padrao)
         $route(to) {
             this.category.id = to.params.id
             this.articles = []

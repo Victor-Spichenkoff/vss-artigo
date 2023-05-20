@@ -1,14 +1,50 @@
 <template>
     <aside class="menu" v-show="isMenuVisible">
-
+        <div class="menu-filter">
+            <i class="fa fa-search fa-lg"></i>
+            <input type="text" placeholder="Buscar algo" v-model="treeFilter" class="filter-field">
+        </div>
+        <Tree :data="treeData" :options="treeOptions"
+            :filter="treeFilter" ref="tree" />
     </aside>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Tree from 'liquor-tree';
+import { baseApiUrl } from '@/global';
+import Axios from 'axios';
+
 export default {
     name:'menu',
-    computed: mapState(['isMenuVisible'])
+    components: { Tree },
+    computed: mapState(['isMenuVisible']),
+    methods: {
+        getTreeData() {
+            const url = `${baseApiUrl}/categories/tree`
+            return Axios.get(url).then(res => res.data)
+        },
+        onNodeSelect(node) {
+            this.$router.push({
+                name: 'articlesByCategory',
+                params: { id: node.id }
+            })
+        }
+
+    },
+    data: function() {
+        return {
+            treeData: this.getTreeData(),
+            treeOptions: {
+                propertyNames: { 'text': 'name' },
+                filter: { emptyText: 'Categoria não encontrada' }
+            },
+            treeFilter: ''
+        }
+    },
+    mounted() {
+        this.$refs.tree.$on('node:selected', this.onNodeSelect)//refs=referencia do template;on=evento
+    }
 }
 </script>
 

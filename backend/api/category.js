@@ -108,23 +108,19 @@ module.exports = app => {
 
 
     const toTree = (categories, tree) => {
-        if(!tree) tree = categories.filter(c => c.parentId)//só coloca quem nao tem nenhum pai
-        tree = tree.map(parentNode => {//node = nó
+        if(!tree) tree = categories.filter(c => !c.parentId)
+        tree = tree.map(parentNode => {
             const isChild = node => node.parentId == parentNode.id
-
             parentNode.children = toTree(categories, categories.filter(isChild))
-
             return parentNode
         })
-
         return tree
     }
 
-
     const getTree = (req, res) => {
-        app.db('categories')    
-            .then(categories => res.json(toTree(withPath(categories))))
-            .catch(e => res.status(500).sedn(e))
+        app.db('categories')
+            .then(categories => res.json(toTree(categories)))
+            .catch(err => res.status(500).send(err))
     }
 
     return { save, remove, getByID, get, getTree }
