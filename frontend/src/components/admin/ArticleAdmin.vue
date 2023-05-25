@@ -80,7 +80,7 @@ export default {
           users: [],
           //paginacao
           page: 1 ,
-          limit: 1,
+          limit: 2,
           count: 0,
           fields: [
               { key: 'id', label: 'Código', sortable: true },

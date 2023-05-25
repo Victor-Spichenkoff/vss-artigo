@@ -82,7 +82,7 @@ module.exports = app => {
                 notExistsOrError(articles, 'Usuário ligado a algum artigo')
 
                 const rowsUpdated = await app.db('users')
-                    .update({deleteAt: new Date()})
+                    .delete()//({deleteAt: new Date()})
                     .where({ id: req.params.id })
 
                 existsOrError(rowsUpdated, 'Usuário não encontrado')
@@ -97,6 +97,17 @@ module.exports = app => {
 
     return { save, get, getByID, remove }//retorna as funcoes que queira usar fora
 }
+
+
+
+//Teste externo
+// {
+//     "name": "Testador",
+//     "email": "testar@gmail.com",
+//     "password": 12345,
+//     "confirmPassword": 12345,
+//     "admin": true
+// }
 
 //teste postman
 // {

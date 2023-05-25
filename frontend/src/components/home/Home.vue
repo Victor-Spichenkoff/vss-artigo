@@ -31,6 +31,7 @@ export default {
     },
     mounted() {
       this.getStats()
+      this.getStats()
     }
 
 }

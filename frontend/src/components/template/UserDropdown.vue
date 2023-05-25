@@ -9,8 +9,8 @@
         <i class="fa fa-angle-down"></i>
     </div>
     <div class="user-dropdown-content"><!--Conteudo que aparece e some-->
-        <router-link to="admin"><i class='fa fa-cogs'> Administração</i></router-link>
-        <a href=""><i class='fa fa-sign-out'> Sair</i></a>
+        <router-link to="/admin" v-if="user.admin"><i class='fa fa-cogs'> Administração</i></router-link>
+        <a href="" @click.prevent="logout"><i class='fa fa-sign-out'> Sair</i></a>
     </div>
   </div>
 </template>
@@ -20,11 +20,20 @@
 import { mapState } from 'vuex'
 import Gravatar from 'vue-gravatar'
 
+import { userKey } from '@/global'
+
 // Vue.component('v-gravatar', Gravatar)
 export default {
     name: 'UserDrodown', 
     componets: { Gravatar },
-    computed: mapState(['user'])
+    computed: mapState(['user']),
+    methods: {
+        logout() {
+            localStorage.removeItem(userKey)
+            this.$store.commit('setUser', null)
+            this.$router.push({ path: '/auth' })
+        }
+    }
 }
 </script>
 

@@ -62,7 +62,7 @@ module.exports = app => {
 
         app.db('articles')
             .select('id','name', 'description')
-            .limit(10)
+            .limit(limit)
             .offset(page * limit - limit)//pular quantos 2 * 10 - 10 = começa no 10
             .then(articles => res.status(200).json({ data: articles, count, limit }))//os dois são pro front
             .catch(e => res.status(500).send(e))

@@ -5,6 +5,9 @@ import Home from '@/components/home/Home'
 import AdminPages from '@/components/admin/AdminPages'
 import ArticlesByCategory from'../components/article/ArticlesByCategory'
 import ArticleById from '../components/article/ArticleById'
+import Auth from '../components/auth/Auth'
+
+import { userKey } from '@/global'
 
 Vue.use(VueRouter)
 
@@ -18,7 +21,8 @@ const routes = [
     {
         name: 'adminPages',
         path: '/admin',
-        component: AdminPages
+        component: AdminPages,
+        meta: { admRequerido:true }// evitar navegacao sem permissao
     }, 
     {
         name: 'articlesByCategory',
@@ -29,6 +33,11 @@ const routes = [
         name:'articleById',
         path: '/articles/:id',
         component: ArticleById
+    },
+    {
+        name: 'auth',
+        path: '/auth',
+        component: Auth
     }
 ]
 
@@ -36,6 +45,17 @@ const router = new VueRouter({
     mode: 'history',//ou hash(# na url)
     routes//array que eu fiz
 
+})
+
+router.beforeEach((to, from, next) => {
+    const json = localStorage.getItem(userKey)
+    const user = JSON.parse(json)
+
+    if(to.matched.some(rota => {  rota.meta.admRequerido  })){//se tiver admRequido em alguma rota
+        user.adimn ? next() : next({ path: '/' })
+    } else {
+        next()
+    }
 })
 
 export default router

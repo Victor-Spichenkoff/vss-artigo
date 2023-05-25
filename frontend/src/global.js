@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const baseApiUrl = 'http://localhost:2006'
 
 //tratar os erros recebidos do backend
@@ -13,4 +15,7 @@ export function showError(e) {
 }
 
 
-export default { baseApiUrl, showError }
+export const userKey = '__chave_usuario'
+
+
+export default { baseApiUrl, showError, userKey }

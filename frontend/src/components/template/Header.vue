@@ -43,7 +43,7 @@ export default {
         background: linear-gradient(to right, #1e469a, #49a7c1);
 
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 

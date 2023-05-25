@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import 'highlightjs/styles/dracula.css'
+import 'highlightjs/styles/dracula.css'//estilo do destaque
 import hljs from 'highlightjs/highlight.pack.js'
 import { baseApiUrl } from '@/global'
 import axios from 'axios'
@@ -25,12 +25,12 @@ export default {
         axios(url)
             .then(res => this.article = res.data)
             .then(console.log(this.article))
+    },
+    updated() {//deixar codigos em destaque
+        document.querySelectorAll('.article-content pre.ql-syntax').forEach(e => {//todo o conteudo com a tag <pre> (propria disso)
+            hljs.highlightBlock(e)
+        })
     }
-    // updated() {
-    //     document.querySelectorAll('.article-content pre.ql-syntax').forEach(e => {
-    //         hljs.highlightBlock(e)
-    //     })
-    // }
 }
 </script>
 
