@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/components/home/Home'
-import AdminPages from '@/components/admin/AdminPages'
+import AdminPages from '@/components/admin/AdminPages.vue'
 import ArticlesByCategory from'../components/article/ArticlesByCategory'
 import ArticleById from '../components/article/ArticleById'
 import Auth from '../components/auth/Auth'
@@ -22,7 +22,7 @@ const routes = [
         name: 'adminPages',
         path: '/admin',
         component: AdminPages,
-        meta: { admRequerido:true }// evitar navegacao sem permissao
+        // meta: { admRequerido:true }// evitar navegacao sem permissao
     }, 
     {
         name: 'articlesByCategory',
@@ -47,15 +47,15 @@ const router = new VueRouter({
 
 })
 
-router.beforeEach((to, from, next) => {
-    const json = localStorage.getItem(userKey)
-    const user = JSON.parse(json)
+// router.beforeEach((to, from, next) => {
+//     const json = localStorage.getItem(userKey)
+//     const user = JSON.parse(json)
 
-    if(to.matched.some(rota => {  rota.meta.admRequerido  })){//se tiver admRequido em alguma rota
-        user.adimn ? next() : next({ path: '/' })
-    } else {
-        next()
-    }
-})
+//     if(to.matched.some(rota => {  rota.meta.admRequerido  })){//se tiver admRequido em alguma rota
+//         user.adimn ? next() : next({ path: '/' })
+//     } else {
+//         next()
+//     }
+// })
 
 export default router

@@ -24,7 +24,7 @@
             <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
         <hr>
-        <b-table hover striped :items="categories" :fields="fields">
+        <!-- <b-table hover striped :items="categories" :fields="fields">
             <template slot="actions" slot-scope="data">
                 <b-button variant="warning" @click="loadCategory(data.item)" class="mr-2">
                     <i class="fa fa-pencil"></i>
@@ -33,7 +33,7 @@
                     <i class="fa fa-trash"></i>
                 </b-button>
             </template>
-        </b-table>
+        </b-table> -->
     </div>
 </template>
 
@@ -65,6 +65,9 @@ export default {
                     return { ...category, value: category.id, text: category.path }
                 })
             })
+            
+            console.log('Categorias')
+            console.log(this.categories)
         },
         reset() {
             this.mode = 'save'
@@ -95,7 +98,7 @@ export default {
             this.category = { ...category }
         }
     },
-    mounted() {
+    created() {
         this.loadCategories()
     }
 }

@@ -2,6 +2,8 @@ const admin = require('./admin')
 
 
 module.exports = app => {
+    app.get('/teste', (req, res)=> res.send('Funcionando'))
+
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
     app.post('/validateToken', app.api.auth.validateToken)

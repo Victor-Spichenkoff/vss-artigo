@@ -14,7 +14,9 @@ import './config/mq'
 Vue.config.productionTip = false
 
 //So para usar token enqunato nao esta pronto
-//require('axios').defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlZpY3RvciBTcGljaGVua29mZiBTYW50YW5hIiwiZW1haWwiOiJ2c3NAZ21haWwuY29tIiwiYWRtaW4iOnRydWUsImlhdCI6MTY4NDI3MDQ3NSwiZXhwIjoxNjg2ODYyNDc1fQ._IYNUPkX0MBmU4Ecuk2uFz91Noxz1SwyLRIdTfSNS14'
+// const axios = require('axios')
+
+// axios.defaults.headers.common['Authorization'] = 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlZpY3RvciBTcGljaGVua29mZiBTYW50YW5hIiwiZW1haWwiOiJ2c3NAZ21haWwuY29tIiwiYWRtaW4iOnRydWUsImlhdCI6MTY4NDI3MDQ3NSwiZXhwIjoxNjg2ODYyNDc1fQ._IYNUPkX0MBmU4Ecuk2uFz91Noxz1SwyLRIdTfSNS14'
 
 new Vue({
   router,

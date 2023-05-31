@@ -31,7 +31,7 @@ export default {
     },
     mounted() {
       this.getStats()
-      this.getStats()
+      setTimeout(()=>this.getStats(), 2000)
     }
 
 }

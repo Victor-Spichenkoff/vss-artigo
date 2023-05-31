@@ -4,8 +4,9 @@
 			:hideToggle= !user
 			:hiddeUserDropdown='!user' />
 		<Menu v-if="user"/>
+
 		<Content v-if="!validatingToken" />
-		<loading v-else /> <!--mostra o gif enquanto carrega-->
+		<loading v-else /> <!-- mostra o gif enquanto carrega -->
 		<Footer />
 	</div>
 </template>
@@ -29,7 +30,7 @@ export default {
 	computed: mapState(['isMenuVisible', 'user']),
 	data: function() {
 		return {
-			validatingToken: true//momento em que ele vÊ se esta tudo certo
+			validatingToken: false//momento em que ele vÊ se esta tudo certo
 		}
 	},
 	methods: {

@@ -18,7 +18,7 @@ module.exports = app => {
             app.db('categories')
                 .update(category)
                 .where({ id: category.id })
-                .then(()=> res.status(2004).send(category))
+                .then(()=> res.status(204).send(category))
                 .catch(erro => res.status(500).send(erro))
         } else {
             app.db('categories')

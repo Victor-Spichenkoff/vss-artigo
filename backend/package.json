@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node",
+    "dev": "nodemon",
     "production": "pm2 start index.js --name knowledge-backend"
   },
   "keywords": [],

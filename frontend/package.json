@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "buildB": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "0.18.0",
-    "bootstrap-vue": "2.0.0-rc.11",
+    "axios": "^1.4.0",
+    "babel-eslint": "^10.1.0",
+    "bootstrap-vue": "^2.23.1",
+    "eslint-plugin-vue": "^9.14.0",
     "font-awesome": "4.7.0",
     "highlightjs": "9.10.0",
     "liquor-tree": "0.2.32",
@@ -18,14 +21,14 @@
     "vue-mq": "0.2.1",
     "vue-router": "3.0.1",
     "vue-toasted": "1.1.24",
-    "vue2-editor": "2.6.6",
+    "vue2-editor": "^1.0.1",
     "vuex": "3.0.1"
   },
   "devDependencies": {
     "@typescript-eslint/types": "^5.59.5",
-    "@vue/cli-plugin-babel": "3.0.1",
-    "@vue/cli-plugin-eslint": "3.0.1",
-    "@vue/cli-service": "3.0.1",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "vue-template-compiler": "2.5.17"
   },
   "eslintConfig": {
