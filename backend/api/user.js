@@ -112,8 +112,8 @@ module.exports = app => {
 //teste postman
 // {
 //     "name": "Victor Spichenkoff",
-    // "email": "vss@gmail.com",
-    // "password": "12345",
+//     "email": "vss@gmail.com",
+//     "password": "12345",
 //     "confirmPassword": "12345",
 //     "admin": true
 // }

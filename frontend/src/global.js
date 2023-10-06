@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+// export const baseApiUrl = 'https://vss-artigos-backend.onrender.com'
 export const baseApiUrl = 'http://localhost:2006'
 
 //tratar os erros recebidos do backend

@@ -7,10 +7,20 @@
 
 // const { db } = require('./.env')
 const url = require('./.env').DB_URL
+const urlLocal = require('./.env').db1
 
 module.exports = {
     client: 'postgresql',
-    connection: 'postgres://root:mbsP4I7KqikwPDMuMmgfnZ3wdah977rC@dpg-chohk22k728ivvt35c0g-a.ohio-postgres.render.com/final_dx0m?ssl=true',
+    //esse é o ultimo a usar:
+    // connection: 'postgres://root:mbsP4I7KqikwPDMuMmgfnZ3wdah977rC@dpg-chohk22k728ivvt35c0g-a.ohio-postgres.render.com/final_dx0m?ssl=true',
+
+    //local:
+    // connection: urlLocal,
+    //pelo vercel:
+    connection: "postgres://default:vfaNtnmFK83l@ep-jolly-salad-45432948.us-east-2.postgres.vercel-storage.com:5432/verceldb?ssl=true",
+
+
+
 
 
   //   connection: /*db*/{
